@@ -46,3 +46,96 @@ where vend_id != 100; -- 此时vend_id为null的数据不会被筛选出来
 select prod_name , vend_id
 from products
 where  vend_id != 101 and vend_id is not null;
+
+
+
+/*---------------------------------------------------------------------------------------------------------------
+高级过滤语句
+-----------------------------------------------------------------------------------------------------------------
+*/
+
+
+
+SELECT * FROM products;
+
+# AND所有条件都满足
+select prod_name , vend_id , prod_price
+from products
+where  vend_id = 100 and prod_price > 599;
+
+# OR满足其一即可
+select prod_name , vend_id , prod_price
+from products
+where  vend_id = 100 or vend_id = 101
+order by vend_id;
+
+# AND与OR一起使用，AND的优先级更高
+select prod_name , vend_id , prod_price
+from products
+where  vend_id = 100 or vend_id = 101 and prod_price > 599
+order by vend_id;
+
+# 括号优先级更高
+select prod_name , vend_id , prod_price
+from products
+where  (vend_id = 100 or vend_id = 101) and prod_price > 599
+order by vend_id;
+
+# in 操作符是多个OR条件的简写 
+select prod_name , vend_id , prod_price
+from products
+where  vend_id in (100,102)
+order by vend_id;
+
+select prod_name , vend_id , prod_price
+from products
+where  vend_id in (100 , 101) and prod_price > 599 -- in 并不会提高优先级
+order by vend_id;
+
+# not 操作符否定条件
+select prod_name , vend_id , prod_price
+from products
+where  not vend_id in (101,102);
+
+select prod_name , vend_id , prod_price
+from products
+where vend_id not in (101,102);
+
+select prod_name , vend_id , prod_price
+from products
+where  not (vend_id = 100 and prod_price > 299);
+
+select prod_name , vend_id , prod_price
+from products
+where  vend_id in (101 , 102) or prod_price < 299;
+
+
+/*
+---------------------------------------------------------------------------------------------------------
+like操作符，模式匹配 ，使用通配符
+---------------------------------------------------------------------------------------------------------
+*/
+
+# % 用于匹配任意长度的字符，包括零字符
+select prod_name , vend_id , prod_price
+from products
+where prod_name like '无线%';
+
+select prod_name , vend_id , prod_price
+from products
+where prod_name like '%电脑';
+
+select prod_name , vend_id , prod_price
+from products
+where prod_name like '%电%';
+
+# _(下划线)，用于匹配单个字符,可以多个下划线一起使用
+select prod_name , vend_id , prod_price
+from products
+where prod_price like '_99'
+order by vend_id;
+
+select prod_name , vend_id , prod_price
+from products
+where prod_price like '__99'
+order by vend_id;
