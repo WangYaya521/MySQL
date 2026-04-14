@@ -1,0 +1,7 @@
+cust_id,cust_name,cust_phone,cust_email,cust_address
+101,张三,13800138001,zhangsan@example.com,北京市朝阳区
+102,李四,13900139002,lisi@example.com,上海市浦东新区
+103,王五,13700137003,wangwu@example.com,广州市天河区
+104,赵六,13600136004,zhaoliu@example.com,深圳市南山区
+105,孙七,13500135005,sunqi@example.com,杭州市西湖区
+106,周八,13802849473,zhouba@example.com,成都市锦江区
